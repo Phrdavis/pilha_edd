@@ -13,7 +13,10 @@ public class App {
         Pilha PE_2 = new Pilha(limite);
 
         System.out.println("Agora, informe os dados dos Alunos!");
-        int i = 0;
+        
+        boolean voltar = false;
+        boolean rodando = true;
+        int i = 0;       
         while(i < limite) {
 
             
@@ -34,7 +37,7 @@ public class App {
             aluno.setSexo(sexo);
             aluno.setMatricula(matricula);
 
-            if(sexo.toLowerCase() == "masculino"){
+            if(sexo.toLowerCase().equals("masculino")){
 
                 PE_2.push(aluno);
 
@@ -49,6 +52,99 @@ public class App {
             i++;
         }
 
+        while(rodando){
+            System.out.println("\n\n\n\n\n\n\n\n");
+
+            System.out.println("Escolha qual pilha manipular: ");
+            System.out.println("1 - PE_1 : Alunas cadastradas");
+            System.out.println("2 - PE_2 : Alunos cadastrados");
+            int escolha = scan.nextInt();
+            System.out.println("\n\n");
+
+            Pilha aux = new Pilha(limite);
+            if(escolha == 1){
+
+                aux = PE_1;
+                
+
+            }else if(escolha == 2){
+
+                aux = PE_2;
+
+            }else{
+
+                System.out.println("Opção Invalida!");
+
+            }
+
+            while (!voltar) {
+                
+                System.out.println("Selecione uma das opções a baixo: ");
+                System.out.println("1 - pop");
+                System.out.println("2 - isEmpty");
+                System.out.println("3 - isFull");
+                System.out.println("4 - top");
+                System.out.println("5 - sair");
+                System.out.println("\n\n");
+
+                int escolha_pilha = scan.nextInt();
+
+                switch (escolha_pilha) {
+                    case 1:
+
+                        System.out.println("\n\n");
+                        System.out.println(aux.pop());
+                        System.out.println("\n\n");
+                        break;
+                
+                    case 2: 
+
+                        System.out.println("\n\n");
+                        System.out.println(aux.isEmpty());
+                        System.out.println("\n\n");
+                        break;
+                
+                    case 3: 
+
+                        System.out.println("\n\n");
+                        System.out.println(aux.isFull());
+                        System.out.println("\n\n");
+                        break;
+                
+                    case 4: 
+
+                        System.out.println("\n\n");
+                        System.out.println(aux.top());
+                        System.out.println("\n\n");
+                        break;
+                
+                    case 5: 
+
+                        voltar = true;
+                        break;
+
+                }
+
+            }
+
+
+            System.out.println("\n\n Para encerrar o programa, digite 'sim': ");
+            String sair = scan.next();
+
+            if(sair.toLowerCase().equals("sim")){
+
+                rodando = false;
+
+            }else{
+
+                voltar = false;
+
+            }
+
+        }
+        
+
+        System.out.println("\n\n");
         System.out.println("Fim do programa");
 
     }

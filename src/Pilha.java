@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Pilha {
     
     Aluno alunos[];
@@ -14,8 +16,18 @@ public class Pilha {
 
     public void push(Aluno aluno){
     
-        topo++;
-        alunos[topo] = aluno;
+        if(topo < limite){
+
+            topo++;
+            alunos[topo] = aluno;
+            
+            System.out.println("Aluno inserido");
+
+        }else{
+
+            System.out.println("Pilha já esta cheia");
+
+        }
 
     }
 
@@ -23,9 +35,18 @@ public class Pilha {
 
         Aluno aluno = new Aluno();
 
-        aluno = alunos[topo];
-        topo--;
-        return aluno;
+        if(!isEmpty()){
+
+            aluno = alunos[topo];
+            alunos[topo] = null;
+            topo--;
+            return aluno;
+
+        }else {
+            System.out.println("A pilha está vazia!");
+            return null;
+        }
+
 
     }
 
@@ -42,9 +63,20 @@ public class Pilha {
     }
 
     public Aluno top(){
-
-        return alunos[topo];
+        
+        if (!isEmpty()) {
+            return alunos[topo];
+        } else {
+            System.out.println("A pilha está vazia!");
+            return null;
+        }
 
     }
 
+    @Override
+    public String toString() {
+        return "Pilha [alunos=" + Arrays.toString(alunos) + ", limite=" + limite + ", topo=" + topo + "]";
+    }
+
+   
 }
